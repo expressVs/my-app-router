@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/@reduxjs/toolkit@latest/dist/redux-toolkit.umd.js"></script>
+</head>
+<body>
+    <div>
+        <p>
+            Clicked:<span id="value">0</span> times
+            <button id="increment">+</button>
+            <button id="decrement">-</button>
+            <button id="incrementIfOdd"> increment if odd</button>
+            <button id="incrementAsync"> increment async</button>
+        </p>
+    </div>
+    <script>
+        const RTk = window.RTk
+
+        // 创建reducer
+        // 使用counterSlice进行模块划分
+        const counterSlice = RTk.createSlice({
+            name: 'counter',
+            initialState: 0,
+            reducers: {
+                increment: state => state + 1,
+                decrement: state => state - 1,
+            }
+        })
+
+        // 初始化 store
+        const store = RTK.configureStore({
+            reducer: counterSlice.reducer
+        })
+
+        // 定义action toolkit 内部封装的
+        const {increment, decrement} = counterSlice.actions
+
+        // 定义render函数
+        function render(){
+
+        }
+
+        // 订阅store
+        store.subcribe(render)
+
+    </script>
+</body>
+</html>
