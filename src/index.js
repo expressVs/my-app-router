@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { HashRouter, BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './layout';
-
+// import Layout from './layout';
+import { Provider} from 'react-redux';
+import { store } from './app/store';
+ 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function Bpp (){
@@ -16,13 +18,16 @@ function Bpp (){
 }
 
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Layout />} >
-        <Route path="/app" element={<App />} />
-        <Route path="/bpp" element={<Bpp />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>
+  // <BrowserRouter>
+  //   <Routes>
+  //     <Route path="/" element={<Layout />} >
+  //       <Route path="/app" element={<App />} />
+  //       <Route path="/bpp" element={<Bpp />} />
+  //     </Route>
+  //   </Routes>
+  // </BrowserRouter>
 
+  <Provider store={store}>
+    <App />
+  </Provider>
 );

@@ -36,14 +36,31 @@
 
         // 定义action toolkit 内部封装的
         const {increment, decrement} = counterSlice.actions
-
+        const valueEl = document.getElementById('value')
         // 定义render函数
         function render(){
-
+            valueEl.innerHTML = store.getState().toString()
         }
 
         // 订阅store
         store.subcribe(render)
+
+        document.getElementById('increment').
+            addEventListener('click', () => store.dispatch(increment()))
+        document.getElementById('decrement').
+            addEventListener('click', () => store.dispatch(decrement()))
+        document.getElementById('incrementIfOdd').
+            addEventListener('click', () => {
+                if(store.getState() % 2 !== 0){
+                    store.dispatch(increment())
+                }
+            })
+        document.getElementById('incrementAsync').
+            addEventListener('click', () => {
+                setTimeout(() => {
+                    store.dispatch(increment())
+                }, 1000)
+            })
 
     </script>
 </body>
